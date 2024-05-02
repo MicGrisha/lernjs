@@ -60,7 +60,7 @@ if (LoginCheck === "Админ") {
         alert ("Неверный пароль")
     }
 } else if (LoginCheck === null || LoginCheck === "") {
-    alert ("Ложная тревога, он не знает пароля")
+    alert ("Ложная тревога, он не знает пароль")
 } else {
     alert ("Я вас не знаю")
 }
