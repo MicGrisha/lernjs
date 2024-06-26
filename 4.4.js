@@ -34,7 +34,7 @@ alert( calculator.mul() );
 
 //Цепь вызовов
 
-llet ladder = {
+let ladder = {
     step: 0,
     up() {
       this.step++;
@@ -52,28 +52,26 @@ llet ladder = {
 
 //cloneDeep (Пока понял, как проверили и копировали примитивы)
 
-function cloneDeep(obj) {
-    if (obj === null || typeof obj !== 'object') {
-      return obj; // Примитивы возвращаем как есть
+
+function ownCloneDeep(obj) {
+    const newObj = {}
+
+    if (obj === null) {
+        return null
     }
-  
+
     if (Array.isArray(obj)) {
-      let arrCopy = [];
-      for (let i = 0; i < obj.length; i++) {
-        arrCopy[i] = cloneDeep(obj[i]); // Рекурсивное копирование элементов массива
-      }
-      return arrCopy;
+        return obj.map(item => typeof el === "object" ? ownCloneDeep(item) : item)
     }
-  
-    let objCopy = {};
+
     for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        objCopy[key] = cloneDeep(obj[key]); // Рекурсивное копирование свойств объекта
-      }
+        typeof obj[key] === "object" ? newObj[key] = ownCloneDeep(obj[key]) : newObj[key] = obj[key]
     }
-    return objCopy;
-  }
-  
+
+    return newObj
+}
+
+console.log(ownCloneDeep(user))
 
 
 // Улучшаем калькулятор 
